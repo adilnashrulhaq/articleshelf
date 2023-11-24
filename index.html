@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Articleshelf Apps</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<header class="head_bar">
+  <h1 class="head_bar__title">Articleshelf Apps</h1>
+</header>
+<m class="main-container">
+  <section class="left-section">
+    <section class="input_section">
+      <h2>Masukkan Artikel Baru</h2>
+      <form id="inputArticle">
+        <div class="input">
+          <label for="inputArticleTitle">Judul</label>
+          <input id="inputArticleTitle" type="text" placeholder="judul artikel" required>
+        </div>
+        <div class="input">
+          <label for="inputArticleAuthor">Penulis</label>
+          <input id="inputArticleAuthor" type="text" placeholder="penulis artikel" required>
+        </div>
+        <div class="input">
+          <label for="inputArticleYear">Tahun</label>
+          <input id="inputArticleYear" type="number" placeholder="tahun diterbitkan" min="1000" max="9999" required>
+        </div>
+        <div class="input_inline">
+          <label for="inputArticleIsComplete">Selesai dibaca</label>
+          <input id="inputArticleIsComplete" type="checkbox">
+        </div>
+        <button id="articleSubmit" type="submit">Masukkan Artikel ke rak <span id="articleStatus">Belum selesai dibaca</span></button>
+      </form>
+    </section>
+    
+    <section class="article_shelf">
+      <h2>Belum selesai dibaca</h2>
+      <div id="incompleteArticleshelfList" class="article_list">
+      </div>
+    </section>
+    
+    <section class="article_shelf">
+      <h2>Selesai dibaca</h2>
+      <div id="completeArticleshelfList" class="article_list">
+      </div>
+    </section>
+  </section>
+  
+  <section class="right-section">
+    <section class="search_section">
+      <h2>Cari Artikel</h2>
+      <form id="searchArticle">
+        <label for="searchArticleTitle">Judul</label>
+        <input id="searchArticleTitle" type="text" placeholder="judul artikel">
+        <button id="searchSubmit" type="submit">Cari</button>
+      </form>
+    </section>
+  
+    <section class="article_search">
+      <h2>Artikel yang anda cari <button id="closeSearchResults">Reset</button></h2>
+      <div id="searchArticleshelfList" class="search_list">
+      </div>
+    </section>
+  </section>
+</main>
+
+<script src="main.js"></script>
+
+</body>
+</html>
