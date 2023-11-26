@@ -55,16 +55,17 @@ document.addEventListener('DOMContentLoaded', function() {
 function addArticle() {
     const titleArticle = document.getElementById('inputArticleTitle').value;
     const authorArticle = document.getElementById('inputArticleAuthor').value;
-    const yearArticle = document.getElementById('inputArticleYear').value;
+    const yearArticle = Number(document.getElementById('inputArticleYear').value)
+    // const yearArticleNumber = parseInt(yearArticle, 10);
     
-    let isCompleted = false;
+    let isComplete = false;
     const checkbox = document.getElementById('inputArticleIsComplete');
     if (checkbox.checked) {
-        isCompleted = true;
+        isComplete = true;
     }
     
     const generatedID = generateId();
-    const articleObject = generateArticleObject(generatedID, titleArticle, authorArticle, yearArticle, isCompleted);
+    const articleObject = generateArticleObject(generatedID, titleArticle, authorArticle, yearArticle, isComplete);
     articles.push(articleObject);
 
     document.dispatchEvent(new Event(RENDER_EVENT));
@@ -75,13 +76,13 @@ function generateId() {
     return +new Date();
 }
 
-function generateArticleObject(id, title, author, year, isCompleted) {
+function generateArticleObject(id, title, author, year, isComplete) {
     return {
         id,
         title,
         author,
         year,
-        isCompleted
+        isComplete
     }
 }
 
@@ -95,7 +96,7 @@ document.addEventListener(RENDER_EVENT, function () {
     
     for (const articleItem of articles) {
         const articleElement = makeArticle(articleItem);
-        if (!articleItem.isCompleted) {
+        if (!articleItem.isComplete) {
             uncompletedBOOKList.append(articleElement);
         } else {
             completedBOOKList.append(articleElement);
@@ -117,7 +118,7 @@ function makeArticle(articleObject) {
     actionContainer.classList.add('action');
 
     const actionButton = document.createElement('button');
-    if (articleObject.isCompleted) {
+    if (articleObject.isComplete) {
         actionButton.innerText = 'Belum selesai dibaca';
         actionButton.classList.add('green');
 
@@ -167,7 +168,7 @@ function capitalizeWords(str) {
 function addTaskToCompleted (articleId) {
     const articleTarget = findArticle(articleId);
     if (articleTarget == null) return;
-    articleTarget.isCompleted = true;
+    articleTarget.isComplete = true;
     document.dispatchEvent(new Event(RENDER_EVENT));
     saveData();
 }
@@ -212,11 +213,10 @@ function removeTaskFromCompleted(articleId) {
 }
 
 
-
 function undoTaskFromCompleted(articleId) {
     const articleTarget = findArticle(articleId);
     if (articleTarget == null) return;
-    articleTarget.isCompleted = false;
+    articleTarget.isComplete = false;
     document.dispatchEvent(new Event(RENDER_EVENT));
     saveData();
 }
