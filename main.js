@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function addArticle() {
     const titleArticle = document.getElementById('inputArticleTitle').value;
     const authorArticle = document.getElementById('inputArticleAuthor').value;
-    const yearArticle = Number(document.getElementById('inputArticleYear').value)
-    // const yearArticleNumber = parseInt(yearArticle, 10);
+    const yearArticle = document.getElementById('inputArticleYear').value;
+    const yearArticleNumber = parseInt(yearArticle, 10);
     
     let isComplete = false;
     const checkbox = document.getElementById('inputArticleIsComplete');
@@ -65,7 +65,7 @@ function addArticle() {
     }
     
     const generatedID = generateId();
-    const articleObject = generateArticleObject(generatedID, titleArticle, authorArticle, yearArticle, isComplete);
+    const articleObject = generateArticleObject(generatedID, titleArticle, authorArticle, yearArticleNumber, isComplete);
     articles.push(articleObject);
 
     document.dispatchEvent(new Event(RENDER_EVENT));
